@@ -1,9 +1,8 @@
-import { nanoid } from "@reduxjs/toolkit";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CREATE_TASK, UPDATE_TASK_BY_ID } from "../redux/sagas/types";
 import { setTaskSlice } from "../redux/slice/task";
-import { editTasksSlice, addTasksSlice } from "../redux/slice/tasks";
+import { nanoid } from "@reduxjs/toolkit";
+import { CREATE_TASK, UPDATE_TASK_BY_ID } from "../redux/types";
 
 const TodoForm = () => {
   const task = useSelector((state) => state.task);
