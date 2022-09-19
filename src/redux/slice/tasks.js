@@ -4,7 +4,7 @@ const tasks = createSlice({
   name: "tasks",
   initialState: [
     {
-      id: "0",
+      id: "",
       title: "",
       message: "",
     },

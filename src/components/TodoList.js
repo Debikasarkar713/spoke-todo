@@ -17,6 +17,7 @@ export default function TodoList() {
               <li>Title: {row.title}</li>
               <li>Details: {row.message}</li>
             </ul>
+            <input type="checkbox" />
             <button onClick={() => dispatch(setTaskSlice(row))}>EDIT</button>
             <button
               onClick={() => dispatch({ type: DELETE_TASK_BY_ID, id: row.id })}

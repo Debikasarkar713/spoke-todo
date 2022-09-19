@@ -24,10 +24,10 @@ const TodoForm = () => {
   };
   return (
     <form>
-      <label>
+      {/* <label>
         Task Number:
-        <input type="text" value={task.id} />
-      </label>
+        <input value={task.id} placeholder="title" type="text" />
+      </label> */}
       <label>
         Title:
         <input
