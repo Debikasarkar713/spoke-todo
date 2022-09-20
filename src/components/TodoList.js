@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTaskSlice } from "../redux/slice/task";
 import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
@@ -25,31 +24,38 @@ const TaskDiv = styled.div`
   padding: 10px;
 `;
 
+const Strike = styled.ul`
+  text-decoration: ${(props) => (props.checked ? "line-through" : "")};
+`;
+
 export default function TodoList() {
   const [checked, setChecked] = useState(false);
-  const [boxPosition, setBoxPosition] = useState({ x: 100, y: 0 });
   const rows = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
   React.useEffect(() => dispatch({ type: GET_TASKS }), []);
+
+  const handleClick = () => {
+    setChecked(!checked);
+  };
   return (
     <TodoWrapper>
       <CompleteDiv>
         INCOMPLETE TASKS
         <TaskDiv
-          style={{
-            position: "relative",
-            top: boxPosition.x,
-            left: boxPosition.y,
-          }}
+        // style={{
+        //   position: "relative",
+        //   top: boxPosition.x,
+        //   left: boxPosition.y,
+        // }}
         >
           <ul>
             {rows.map((row) => (
               <div key={row.id}>
-                <ul>
+                <Strike checked={checked}>
                   {/* <li>Task Number: {row.id}</li> */}
                   <li>Title: {row.title}</li>
                   <li>Details: {row.message}</li>
-                </ul>
+                </Strike>
 
                 <button onClick={() => dispatch(setTaskSlice(row))}>
                   EDIT
@@ -63,7 +69,11 @@ export default function TodoList() {
                 </button>
                 <div>
                   <label>
-                    <input type="checkbox" />
+                    <input
+                      onChange={handleClick}
+                      checked={checked}
+                      type="checkbox"
+                    />
                     Complete
                   </label>
                 </div>
