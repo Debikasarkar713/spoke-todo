@@ -31,8 +31,8 @@ const TodoForm = () => {
     <FormWrapper>
       <form>
         <label>
-          Task Number:
-          <input value={task.id} placeholder="title" type="text" />
+          {/* Task Number:
+          <input value={task.id} placeholder="title" type="text" /> */}
         </label>
         <label>
           Title:
