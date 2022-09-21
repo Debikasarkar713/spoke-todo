@@ -29,14 +29,21 @@ const Strike = styled.ul`
 `;
 
 export default function TodoList() {
-  const [checked, setChecked] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
   React.useEffect(() => dispatch({ type: GET_TASKS }), []);
 
-  const handleClick = () => {
-    setChecked(!checked);
+  const handleClick = (index) => () => {
+    setClickedIndex((state) => ({
+      ...state,
+      [index]: !state[index],
+    }));
   };
+  const handleChange = () => {
+    console.log("test");
+  };
+
   return (
     <TodoWrapper>
       <CompleteDiv>
@@ -49,14 +56,15 @@ export default function TodoList() {
         // }}
         >
           <ul>
-            {rows.map((row, i) => (
-              <div key={i}>
-                <Strike checked={checked}>
+            {rows.map((row, index) => (
+              <div key={index} id={row.id}>
+                <Strike>
                   {/* <li>Task Number: {row.id}</li> */}
                   <li>Title: {row.title}</li>
                   <li>Details: {row.message}</li>
                 </Strike>
-
+                {clickedIndex[index] ? <span>done</span> : ""}
+                <br />
                 <button onClick={() => dispatch(setTaskSlice(row))}>
                   EDIT
                 </button>
@@ -69,7 +77,11 @@ export default function TodoList() {
                 </button>
                 <div>
                   <label>
-                    <input onChange={handleClick} type="checkbox" />
+                    <input
+                      onChange={handleChange}
+                      onClick={handleClick(index)}
+                      type="checkbox"
+                    />
                     Complete
                   </label>
                 </div>
@@ -78,10 +90,7 @@ export default function TodoList() {
           </ul>
         </TaskDiv>
       </CompleteDiv>
-      <CompleteDiv>
-        COMPLETED TASKS
-        <TaskDiv>insert here</TaskDiv>
-      </CompleteDiv>
+
       <br />
     </TodoWrapper>
   );

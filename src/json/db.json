@@ -1,14 +1,3 @@
 {
-  "tasks": [
-    {
-      "id": "FSXgBcZp",
-      "title": "test ",
-      "message": "test"
-    },
-    {
-      "id": "NAqfMX8x",
-      "title": "test2",
-      "message": "test"
-    }
-  ]
+  "tasks": []
 }
