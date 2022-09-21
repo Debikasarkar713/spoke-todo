@@ -49,8 +49,8 @@ export default function TodoList() {
         // }}
         >
           <ul>
-            {rows.map((row) => (
-              <div key={row.id}>
+            {rows.map((row, i) => (
+              <div key={i}>
                 <Strike checked={checked}>
                   {/* <li>Task Number: {row.id}</li> */}
                   <li>Title: {row.title}</li>
@@ -69,11 +69,7 @@ export default function TodoList() {
                 </button>
                 <div>
                   <label>
-                    <input
-                      onChange={handleClick}
-                      checked={checked}
-                      type="checkbox"
-                    />
+                    <input onChange={handleClick} type="checkbox" />
                     Complete
                   </label>
                 </div>
