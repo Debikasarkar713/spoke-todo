@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
       align-items: center;
       height: 100vh;
       background-color: #5D696B;
+      font-family: 'Newsreader', serif;
+      font-family: 'Roboto Mono', monospace;
       color: #ECEAD8;
       padding: 20px;
     }

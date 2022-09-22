@@ -40,7 +40,7 @@ const TodoForm = () => {
           <input value={task.id} placeholder="title" type="text" /> */}
         </label>
         <label>
-          Title:
+          Title/Task Number:
           <FormInput
             onChange={handleChange("title")}
             placeholder="title"

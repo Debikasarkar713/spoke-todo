@@ -5,6 +5,7 @@ import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Draggable from "react-draggable";
 
 const TypeIn = keyframes`
 from { width: 0 }
@@ -18,21 +19,19 @@ from, to { border-color: transparent }
 const TodoWrapper = styled.section`
   display: flex;
   justify-content: center;
+  max-width: 500px;
+  width: 50vw;
+  margin: 0 auto;
+  padding: 50px;
   background-color: #8c9986;
   font-size: 20px;
   color: black;
-  padding: 100px;
 `;
 const CompleteDiv = styled.div`
   display: flex;
+  width: 100vw;
   max-height: 100%;
   min-width: 25%;
-  overflow: hidden;
-  // border: 1px solid green;
-  // background-color: #eeeee4;
-  // border-radius: 25px;
-  // padding: 20px;
-  // text-align: center;
 `;
 
 const TitleDiv = styled.div`
@@ -56,32 +55,32 @@ const Title = styled.h2`
 const TaskDiv = styled.div`
   display: flex;
   justify-content: center;
-  width: 500px;
-  // height: 50vh;
-  border-bottom: 1px solid black;
+  width: 100%;
 `;
 
 const Strike = styled.ul`
   list-style: none;
+  width: 100%;
   padding: 0;
   margin: 0;
 `;
-const Strike2 = styled.ul`
+const ListStyleUl = styled.ul`
   list-style: none;
+  width: 100%;
   padding: 0;
   margin: 0;
-  width: 500px;
 `;
 
 const ListStyle = styled.li`
-  display: block;
-  padding: 0.75rem 1rem;
-  border: solid 1px rgba(0, 0, 0, 0.25);
-  margin-bottom: 0.5rem;
-  border: 1px solid green;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  margin: 0 auto;
+  padding: 10px 5px;
   background-color: #eeeee4;
-  border-radius: 25px;
-  padding: 20px;
+  border-radius: 10px;
   text-align: center;
 `;
 const Name = styled.span`
@@ -90,8 +89,10 @@ const Name = styled.span`
 const Message = styled.span`
   float: right;
 `;
-const EditDelete = styled(Message)``;
-
+const EditDelete = styled.span`
+  florat: right;
+`;
+const CompleteSpan = styled.span``;
 export default function TodoList() {
   const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
@@ -118,7 +119,8 @@ export default function TodoList() {
           <Strike>
             {rows.map((row, index) => (
               <div key={index} id={row.id}>
-                <Strike2>
+                {/* <Draggable> */}
+                <ListStyleUl>
                   {/* <li>Task Number: {row.id}</li> */}
                   <ListStyle>
                     <Name>{row.title}</Name>
@@ -129,7 +131,10 @@ export default function TodoList() {
                     <br />
                   </ListStyle>{" "}
                   <EditDelete>
-                    <button onClick={() => dispatch(setTaskSlice(row))}>
+                    <button
+                      type="button"
+                      onClick={() => dispatch(setTaskSlice(row))}
+                    >
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         style={{
@@ -152,36 +157,24 @@ export default function TodoList() {
                       />
                     </button>
                   </EditDelete>
-                </Strike2>
-                <div>
-                  <br />
-                  {/* <button onClick={() => dispatch(setTaskSlice(row))}>
-                    EDIT
-                  </button>
-                  <button
-                    onClick={() =>
-                      dispatch({ type: DELETE_TASK_BY_ID, id: row.id })
-                    }
-                  >
-                    DELETE
-                  </button> */}
-                </div>
-                {/* <div>
-                  <label>
-                    <input
-                      onChange={handleChange}
-                      onClick={handleClick(index)}
-                      type="checkbox"
-                    />
-                  </label>
-                  <p>
+                  <EditDelete>
+                    <label>
+                      <input
+                        onChange={handleChange}
+                        onClick={handleClick(index)}
+                        type="checkbox"
+                      />
+                    </label>
+
                     {clickedIndex[index] ? (
-                      <span>done</span>
+                      <CompleteSpan>
+                        Congratulations, this is complete!
+                      </CompleteSpan>
                     ) : (
                       <span>This is incomplete</span>
                     )}
-                  </p>
-                </div> */}
+                  </EditDelete>
+                </ListStyleUl>
               </div>
             ))}
           </Strike>
