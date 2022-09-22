@@ -5,7 +5,6 @@ import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Draggable from "react-draggable";
 import media from "../styles/media";
 
 const TypeIn = keyframes`
@@ -31,10 +30,10 @@ const TodoWrapper = styled.section`
   color: black;
 
   ${media.tablet`
-  font-size: 14px;
+    font-size: 14px;
   `}
   ${media.desktop`
-  font-size: 18px;
+    font-size: 18px;
   `}
 `;
 
@@ -51,9 +50,19 @@ const TitleDiv = styled.div`
   text-align: center;
   justify-content: center;
   top: 10px;
+  font-size: 10px;
+
   ${media.tablet`
-    top: 50px;
+    font-size: 14px;
   `}
+  ${media.desktop`
+    font-size: 18px;
+    top: 50px
+  `}
+
+  @media (max-height: 650px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h2`
@@ -129,10 +138,11 @@ const Message = styled.span`
     float: right;
     height: 80%;
     width: 60%;
+    margin-top: auto;
     padding-right: 10px;
     vertical-align: middle;
     font-size: 20px;
-    margin-top: auto;
+    
   `}
 `;
 
@@ -169,9 +179,6 @@ export default function TodoList() {
       ...state,
       [index]: !state[index],
     }));
-  };
-  const handleChange = () => {
-    console.log("test");
   };
 
   return (
@@ -220,21 +227,16 @@ export default function TodoList() {
                       </ButtonStyles>
                     </EditDelete>
                     <CompleteWrap>
-                      <label>
-                        <input
-                          onChange={handleChange}
-                          onClick={handleClick(index)}
-                          type="checkbox"
-                        />
-                      </label>
-
                       {clickedIndex[index] ? (
                         <CompleteSpan>
                           Congratulations,this is complete!
                         </CompleteSpan>
                       ) : (
-                        <span>This is incomplete</span>
+                        <span>Incomplete</span>
                       )}
+                      <label>
+                        <input onClick={handleClick(index)} type="checkbox" />
+                      </label>
                     </CompleteWrap>
                   </ButtonWrap>
                 </ListStyleUl>

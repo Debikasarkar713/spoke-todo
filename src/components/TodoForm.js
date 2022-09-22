@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTaskSlice } from "../redux/slice/task";
 import { nanoid } from "@reduxjs/toolkit";
@@ -13,9 +13,9 @@ const FormWrapper = styled.section`
   display: flex;
   position: relative;
   justify-content: center;
+  height: 100%;
   bottom: 10px;
   margin: 20px 0;
-  height: 100%;
 
   ${media.mobileSmall`
     bottom: 90px;
@@ -32,10 +32,10 @@ const SubmitForm = styled.form`
 const InputContainer = styled.div`
   flex-direction: row;
   justify-content: center;
+  height: 22px;
   outline: none;
   margin: 0;
   box-sizing: border-box;
-  height: 22px;
 `;
 
 const InputLabel = styled.label`
@@ -52,6 +52,7 @@ const FormInput = styled.input`
   padding: 10px 80px;
   text-align: center;
   margin-bottom: 10px;
+
   input:focus,
   textarea:focus,
   select:focus {
@@ -61,13 +62,13 @@ const FormInput = styled.input`
     text-align: center;
   }
 `;
+
 const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
 
 const TodoForm = () => {
-  const [disable, setDisable] = useState(true);
   const task = useSelector((state) => state.task);
   const dispatch = useDispatch();
   const handleChange = (prop) => (e) => {

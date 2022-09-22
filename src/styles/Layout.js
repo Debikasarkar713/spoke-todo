@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Layout = ({ children, bgColor }) => (
+export const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
 
