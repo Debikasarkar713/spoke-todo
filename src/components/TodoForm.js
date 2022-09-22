@@ -10,8 +10,11 @@ import { ButtonStyles } from "./TodoList";
 
 const FormWrapper = styled.section`
   display: flex;
+  position: relative;
   justify-content: center;
-  margin: 30px;
+  bottom: 90px;
+  margin: 20px 0;
+  height: 100%;
 `;
 
 const SubmitForm = styled.form`
@@ -23,21 +26,39 @@ const SubmitForm = styled.form`
 
 const InputContainer = styled.div`
   flex-direction: row;
+  justify-content: center;
+  outline: none;
+  margin: 0;
+  box-sizing: border-box;
+  height: 22px;
+`;
+
+const InputLabel = styled.label`
+  display: block;
+  text-align: center;
+  font-size: 20px;
 `;
 
 const FormInput = styled.input`
+  background: #8c9986;
+  color: white;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 10px 80px;
+  text-align: center;
+  margin-bottom: 10px;
   input:focus,
   textarea:focus,
   select:focus {
     outline: none;
   }
-  background: #8c9986;
-  color: white;
-  border-radius: 20px;
-  box-shadow: none;
-  max-width: 100%;
-  height: 30px;
-  width: 300px;
+  ::placeholder {
+    text-align: center;
+  }
+`;
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const TodoForm = () => {
@@ -64,42 +85,44 @@ const TodoForm = () => {
     <FormWrapper>
       <SubmitForm>
         <InputContainer>
-          <label>
-            Title/Task Number:
+          <InputLabel>
+            Title/Task Number
             <FormInput
               onChange={handleChange("title")}
-              placeholder="title"
+              placeholder="ex. Monday or 1,2."
               type="text"
               value={task.title}
               name="title"
               required
             />
-          </label>
-          <label>
-            Task:
+          </InputLabel>
+          <InputLabel>
+            Task
             <FormInput
               onChange={handleChange("message")}
-              placeholder="enter here"
+              placeholder="Get this done"
               type="text"
               value={task.message}
               name="message"
               required
             />
-          </label>
-          <ButtonStyles
-            type="button"
-            onClick={() => handleSubmit()}
-            value="Submit"
-          >
-            <FontAwesomeIcon
-              icon={faPlus}
-              style={{
-                fontSize: 20,
-                color: "white",
-                padding: "10px;",
-              }}
-            />
-          </ButtonStyles>
+          </InputLabel>
+          <ButtonDiv>
+            <ButtonStyles
+              type="button"
+              onClick={() => handleSubmit()}
+              value="Submit"
+            >
+              <FontAwesomeIcon
+                icon={faPlus}
+                style={{
+                  fontSize: 20,
+                  color: "white",
+                  padding: "10px",
+                }}
+              />
+            </ButtonStyles>
+          </ButtonDiv>
         </InputContainer>
       </SubmitForm>
     </FormWrapper>

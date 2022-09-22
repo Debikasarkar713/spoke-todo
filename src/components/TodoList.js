@@ -19,6 +19,7 @@ from, to { border-color: transparent }
 const TodoWrapper = styled.section`
   display: flex;
   justify-content: center;
+  height: 100%;
   max-width: 500px;
   width: 50vw;
   margin: 0 auto;
@@ -37,10 +38,9 @@ const CompleteDiv = styled.div`
 const TitleDiv = styled.div`
   display: inline-block;
   position: absolute;
-  top: 60px;
-  position: absolute;
   text-align: center;
   justify-content: center;
+  top: 0;
 `;
 
 const Title = styled.h2`
@@ -91,7 +91,6 @@ const Message = styled.span`
   display: block;
   font-size: 14px;
   word-wrap: break-all;
-  // overflow: auto;
   overflow-y: scroll;
   height: 60%;
   width: 60%;
@@ -192,7 +191,7 @@ export default function TodoList() {
 
                     {clickedIndex[index] ? (
                       <CompleteSpan>
-                        Congratulations, this is complete!
+                        Congratulations,this is complete!
                       </CompleteSpan>
                     ) : (
                       <span>This is incomplete</span>
