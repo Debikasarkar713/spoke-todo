@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTaskSlice } from "../redux/slice/task";
 import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
@@ -13,7 +13,7 @@ to { width: 100% }
 `;
 const CursorIn = keyframes`
 from, to { border-color: transparent }
-50% { border-color: orange; }
+50% { border-color: white; }
 `;
 
 const TodoWrapper = styled.section`
@@ -35,9 +35,9 @@ const CompleteDiv = styled.div`
 `;
 
 const TitleDiv = styled.div`
-  position: absolute;
-  top: 29px;
   display: inline-block;
+  position: absolute;
+  top: 60px;
   position: absolute;
   text-align: center;
   justify-content: center;
@@ -45,7 +45,7 @@ const TitleDiv = styled.div`
 
 const Title = styled.h2`
   overflow: hidden;
-  border-right: 0.15em solid orange;
+  border-right: 0.15em solid white;
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.15em;
@@ -65,19 +65,19 @@ const Strike = styled.ul`
   margin: 0;
 `;
 const ListStyleUl = styled.ul`
-  list-style: none;
   width: 100%;
   padding: 0;
   margin: 0;
+  list-style: none;
 `;
 
 const ListStyle = styled.li`
-  display: flex;
+  display: block;
+  position: relative;
   flex-wrap: wrap;
   width: 100%;
   height: 50px;
   margin: 10px 0;
-  margin: 0 auto;
   padding: 10px 5px;
   background-color: #eeeee4;
   border-radius: 10px;
@@ -88,16 +88,43 @@ const Name = styled.span`
 `;
 const Message = styled.span`
   float: right;
+  display: block;
+  font-size: 14px;
+  word-wrap: break-all;
+  // overflow: auto;
+  overflow-y: scroll;
+  height: 60%;
+  width: 60%;
+  overflow: scroll;
+  padding-right: 10px;
+`;
+const Options = styled.span`
+  display: flex;
+  position: absolute;
+  overflow: auto;
+  justify-content: space-between;
 `;
 const EditDelete = styled.span`
-  florat: right;
+  display: block;
+  margin: 0 auto;
 `;
+
+export const ButtonStyles = styled.button`
+  all: unset;
+  cursor: pointer;
+  margin: 0px 5px;
+
+  :focus {
+    outline: #c59faa 5px auto;
+  }
+`;
+
 const CompleteSpan = styled.span``;
 export default function TodoList() {
   const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
-  React.useEffect(() => dispatch({ type: GET_TASKS }), []);
+  useEffect(() => dispatch({ type: GET_TASKS }), [dispatch]);
 
   const handleClick = (index) => () => {
     setClickedIndex((state) => ({
@@ -119,31 +146,28 @@ export default function TodoList() {
           <Strike>
             {rows.map((row, index) => (
               <div key={index} id={row.id}>
-                {/* <Draggable> */}
                 <ListStyleUl>
-                  {/* <li>Task Number: {row.id}</li> */}
                   <ListStyle>
                     <Name>{row.title}</Name>
                     <Message>{row.message}</Message>
 
-                    {/* </ListStyle>
-                  <ListStyle> */}
                     <br />
-                  </ListStyle>{" "}
+                  </ListStyle>
+
                   <EditDelete>
-                    <button
+                    <ButtonStyles
                       type="button"
                       onClick={() => dispatch(setTaskSlice(row))}
                     >
                       <FontAwesomeIcon
                         icon={faPenToSquare}
                         style={{
-                          fontSize: 15,
-                          color: "black",
+                          fontSize: 20,
+                          color: "white",
                         }}
                       />
-                    </button>
-                    <button
+                    </ButtonStyles>
+                    <ButtonStyles
                       onClick={() =>
                         dispatch({ type: DELETE_TASK_BY_ID, id: row.id })
                       }
@@ -151,11 +175,11 @@ export default function TodoList() {
                       <FontAwesomeIcon
                         icon={faTrash}
                         style={{
-                          fontSize: 15,
-                          color: "black",
+                          fontSize: 20,
+                          color: "white",
                         }}
                       />
-                    </button>
+                    </ButtonStyles>
                   </EditDelete>
                   <EditDelete>
                     <label>
