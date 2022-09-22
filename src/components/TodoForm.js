@@ -60,6 +60,7 @@ const FormInput = styled.input`
   }
   ::placeholder {
     text-align: center;
+    color: #b17083;
   }
 `;
 
