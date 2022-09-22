@@ -22,7 +22,7 @@ export const Layout = ({ children, bgColor }) => (
     <GlobalStyle />
 
     <main>
-      <header>{children}</header>
+      <div>{children}</div>
     </main>
   </ThemeProvider>
 );

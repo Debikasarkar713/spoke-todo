@@ -7,14 +7,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { ButtonStyles } from "./TodoList";
+import media from "../styles/media";
 
 const FormWrapper = styled.section`
   display: flex;
   position: relative;
   justify-content: center;
-  bottom: 90px;
+  bottom: 10px;
   margin: 20px 0;
   height: 100%;
+
+  ${media.mobileSmall`
+    bottom: 90px;
+  `}
 `;
 
 const SubmitForm = styled.form`
