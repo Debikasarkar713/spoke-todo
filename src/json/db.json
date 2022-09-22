@@ -1,3 +1,14 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "0I_4dsBk",
+      "title": "Monday stuff",
+      "message": "Go grocery shopping"
+    },
+    {
+      "id": "lsXAubVT",
+      "title": "Tuesday",
+      "message": "Yoga"
+    }
+  ]
 }

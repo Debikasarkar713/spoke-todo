@@ -4,9 +4,13 @@ import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
     body {
-        background-color: black;
-        color: #ECEAD8;
-        padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #5D696B;
+      color: #ECEAD8;
+      padding: 20px;
     }
 `;
 

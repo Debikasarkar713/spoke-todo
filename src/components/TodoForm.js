@@ -9,6 +9,11 @@ const FormWrapper = styled.section`
   justify-content: center;
 `;
 
+const FormInput = styled.input`
+  background: black;
+  color: white;
+`;
+
 const TodoForm = () => {
   const task = useSelector((state) => state.task);
   const dispatch = useDispatch();
@@ -36,22 +41,24 @@ const TodoForm = () => {
         </label>
         <label>
           Title:
-          <input
+          <FormInput
             onChange={handleChange("title")}
             placeholder="title"
             type="text"
             value={task.title}
             name="title"
+            required
           />
         </label>
         <label>
           Task:
-          <input
+          <FormInput
             onChange={handleChange("message")}
             placeholder="enter here"
             type="text"
             value={task.message}
             name="message"
+            required
           />
         </label>
         <input type="button" onClick={() => handleSubmit()} value="Submit" />
