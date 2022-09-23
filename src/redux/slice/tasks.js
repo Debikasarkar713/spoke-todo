@@ -15,19 +15,16 @@ const tasks = createSlice({
       return state;
     },
     addTasksSlice: (state, action) => {
-      console.log("add tasks slice");
       state.push(action.payload);
       return state;
     },
     editTasksSlice: (state, action) => {
-      console.log("edit");
       state = state.map((i) =>
         i.id === action.payload.id ? action.payload : i
       );
       return state;
     },
     deleteTasksSlice: (state, action) => {
-      console.log("delete");
       state = state.filter((i) => i.id !== action.payload);
       return state;
     },

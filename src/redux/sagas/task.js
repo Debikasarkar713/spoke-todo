@@ -22,7 +22,6 @@ import {
 import { put, takeEvery } from "redux-saga/effects";
 
 export function* getTasksSaga() {
-  console.log("called");
   const tasks = yield getTasksAPI();
   yield put(getTasksSlice(tasks.data));
 }
@@ -38,13 +37,11 @@ export function* createTaskSaga(action) {
 }
 
 export function* updateTaskSaga(action) {
-  console.log("edit");
   yield updateTasksAPI(action.task);
   yield put(editTasksSlice(action.task));
 }
 
 export function* deleteTaskByIdSaga(action) {
-  console.log("delete saga");
   yield deleteTasksAPI(action.id);
   yield put(deleteTasksSlice(action.id));
 }

@@ -5,12 +5,13 @@ import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Draggable from "react-draggable";
+import media from "../styles/media";
 
 const TypeIn = keyframes`
 from { width: 0 }
 to { width: 100% }
 `;
+
 const CursorIn = keyframes`
 from, to { border-color: transparent }
 50% { border-color: white; }
@@ -20,14 +21,22 @@ const TodoWrapper = styled.section`
   display: flex;
   justify-content: center;
   height: 100%;
-  max-width: 500px;
+  max-width: 600px;
   width: 50vw;
   margin: 0 auto;
   padding: 50px;
   background-color: #8c9986;
-  font-size: 20px;
+  font-size: 10px;
   color: black;
+
+  ${media.tablet`
+    font-size: 14px;
+  `}
+  ${media.desktop`
+    font-size: 18px;
+  `}
 `;
+
 const CompleteDiv = styled.div`
   display: flex;
   width: 100vw;
@@ -40,7 +49,20 @@ const TitleDiv = styled.div`
   position: absolute;
   text-align: center;
   justify-content: center;
-  top: 0;
+  top: 10px;
+  font-size: 10px;
+
+  ${media.tablet`
+    font-size: 14px;
+  `}
+  ${media.desktop`
+    font-size: 18px;
+    top: 50px
+  `}
+
+  @media (max-height: 650px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h2`
@@ -64,11 +86,12 @@ const Strike = styled.ul`
   padding: 0;
   margin: 0;
 `;
+
 const ListStyleUl = styled.ul`
   width: 100%;
   padding: 0;
   margin: 0;
-  list-style: none;
+  list-style: none; ;
 `;
 
 const ListStyle = styled.li`
@@ -76,37 +99,60 @@ const ListStyle = styled.li`
   position: relative;
   flex-wrap: wrap;
   width: 100%;
-  height: 50px;
+  max-height: 50px;
   margin: 10px 0;
-  padding: 10px 5px;
   background-color: #eeeee4;
   border-radius: 10px;
   text-align: center;
+
+  ${media.tablet`
+    height: 50px;
+    padding-top: 25px;
+  `}
 `;
+
 const Name = styled.span`
-  float: left;
+  font-size: 12px;
+  text-decoration: underline;
+
+  ${media.tablet`
+    position: absolute;
+    left: 22px;
+    float: none;
+    font-size: 20px;
+    text-decoration: none;
+    vertical-align: middle;
+  `}
 `;
+
 const Message = styled.span`
-  float: right;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
+  text-align: center;
   word-wrap: break-all;
   overflow-y: scroll;
-  height: 60%;
-  width: 60%;
-  overflow: scroll;
-  padding-right: 10px;
+  height: 20px;
+  margin-top: 2px;
+
+  ${media.tablet`
+    float: right;
+    height: 80%;
+    width: 60%;
+    margin-top: auto;
+    padding-right: 10px;
+    vertical-align: middle;
+    font-size: 20px;
+    
+  `}
 `;
-const Options = styled.span`
+
+const ButtonWrap = styled.div`
   display: flex;
-  position: absolute;
-  overflow: auto;
   justify-content: space-between;
 `;
-const EditDelete = styled.span`
-  display: block;
-  margin: 0 auto;
-`;
+
+const EditDelete = styled.span``;
+const CompleteWrap = styled.span``;
 
 export const ButtonStyles = styled.button`
   all: unset;
@@ -118,7 +164,10 @@ export const ButtonStyles = styled.button`
   }
 `;
 
-const CompleteSpan = styled.span``;
+const CompleteSpan = styled.span`
+  color: white;
+`;
+
 export default function TodoList() {
   const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
@@ -130,9 +179,6 @@ export default function TodoList() {
       ...state,
       [index]: !state[index],
     }));
-  };
-  const handleChange = () => {
-    console.log("test");
   };
 
   return (
@@ -152,51 +198,47 @@ export default function TodoList() {
 
                     <br />
                   </ListStyle>
-
-                  <EditDelete>
-                    <ButtonStyles
-                      type="button"
-                      onClick={() => dispatch(setTaskSlice(row))}
-                    >
-                      <FontAwesomeIcon
-                        icon={faPenToSquare}
-                        style={{
-                          fontSize: 20,
-                          color: "white",
-                        }}
-                      />
-                    </ButtonStyles>
-                    <ButtonStyles
-                      onClick={() =>
-                        dispatch({ type: DELETE_TASK_BY_ID, id: row.id })
-                      }
-                    >
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        style={{
-                          fontSize: 20,
-                          color: "white",
-                        }}
-                      />
-                    </ButtonStyles>
-                  </EditDelete>
-                  <EditDelete>
-                    <label>
-                      <input
-                        onChange={handleChange}
-                        onClick={handleClick(index)}
-                        type="checkbox"
-                      />
-                    </label>
-
-                    {clickedIndex[index] ? (
-                      <CompleteSpan>
-                        Congratulations,this is complete!
-                      </CompleteSpan>
-                    ) : (
-                      <span>This is incomplete</span>
-                    )}
-                  </EditDelete>
+                  <ButtonWrap>
+                    <EditDelete>
+                      <ButtonStyles
+                        type="button"
+                        onClick={() => dispatch(setTaskSlice(row))}
+                      >
+                        <FontAwesomeIcon
+                          icon={faPenToSquare}
+                          style={{
+                            fontSize: 20,
+                            color: "white",
+                          }}
+                        />
+                      </ButtonStyles>
+                      <ButtonStyles
+                        onClick={() =>
+                          dispatch({ type: DELETE_TASK_BY_ID, id: row.id })
+                        }
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          style={{
+                            fontSize: 20,
+                            color: "white",
+                          }}
+                        />
+                      </ButtonStyles>
+                    </EditDelete>
+                    <CompleteWrap>
+                      {clickedIndex[index] ? (
+                        <CompleteSpan>
+                          Congratulations,this is complete!
+                        </CompleteSpan>
+                      ) : (
+                        <span>Incomplete</span>
+                      )}
+                      <label>
+                        <input onClick={handleClick(index)} type="checkbox" />
+                      </label>
+                    </CompleteWrap>
+                  </ButtonWrap>
                 </ListStyleUl>
               </div>
             ))}
