@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# Spoke Todo
+
+A simple Todo app that allows the user to name and detail their task on a todo list with an option to complete or leave incomplete.
+
+## This project uses Redux, Redux-Saga and Redux Toolkit
+
+[Redux](https://redux.js.org/)
+[Redux-Saga](https://redux-saga.js.org/)
+[Redux Toolkit](https://redux-toolkit.js.org/)
+
+### This project uses json-server
+
+cd to src/json/db.json
+`npx json-server --watch db.json`
+
+## Designed with Styled-Components 💅🏾
+
+[Styled-Components](https://styled-components.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,7 +85,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### `json-server`
-
-`npx json-server --watch db.json`
