@@ -172,8 +172,6 @@ export default function TodoList() {
   const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
-  // useEffect(() => dispatch({ type: GET_TASKS }), []);
-  // React.useEffect(() => dispatch({ type: GET_TASKS }), []);
 
   const callList = useCallback(() => dispatch({ type: GET_TASKS }), [dispatch]);
 
