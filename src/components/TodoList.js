@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTaskSlice } from "../redux/slice/task";
 import { GET_TASKS, DELETE_TASK_BY_ID } from "../redux/types";
@@ -172,7 +172,15 @@ export default function TodoList() {
   const [clickedIndex, setClickedIndex] = useState({});
   const rows = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
-  useEffect(() => dispatch({ type: GET_TASKS }), [dispatch]);
+  // useEffect(() => dispatch({ type: GET_TASKS }), []);
+  // React.useEffect(() => dispatch({ type: GET_TASKS }), []);
+
+  const callList = useCallback(() => dispatch({ type: GET_TASKS }), [dispatch]);
+
+  useEffect(() => {
+    const getList = () => callList();
+    getList();
+  }, [callList]);
 
   const handleClick = (index) => () => {
     setClickedIndex((state) => ({
