@@ -5,8 +5,15 @@ A simple Todo app that allows the user to name and detail their task on a todo l
 ## This project uses Redux, Redux-Saga and Redux Toolkit
 
 [Redux](https://redux.js.org/)
+`npm install redux`
+
 [Redux-Saga](https://redux-saga.js.org/)
+`npm install redux-saga`
+
 [Redux Toolkit](https://redux-toolkit.js.org/)
+`npm install @reduxjs/toolkit`
+
+`npm install node_modules` to get started
 
 ### This project uses json-server
 
@@ -22,6 +29,10 @@ cd to src/json/db.json
 - User should be able to drag todos around in the list.
 - Proper hosting on an open source framework such as Gatsby or Next
 - Add more than one test. 
+
+If after installing jest it breaks, install below
+`npm i -D --exact jest-watch-typeahead@0.6.5`
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
