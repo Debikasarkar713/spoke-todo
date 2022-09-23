@@ -17,6 +17,12 @@ cd to src/json/db.json
 
 [Styled-Components](https://styled-components.com/)
 
+## Things I'd like to add moving forward
+- More commented code, while learning Redux Saga and Redux for this, I feel that anyone else who is unfamiliar with it could benefit.
+- User should be able to drag todos around in the list.
+- Proper hosting on an open source framework such as Gatsby or Next
+- Add more than one test. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
